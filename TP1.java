@@ -1,7 +1,7 @@
-public class TP1{
+public class TP1 {
 
     public static void main(String[] args) {
-        System.out.println(sommesImpairs(5));
+        /*System.out.println(sommesImpairs(5));
         System.out.println(puiss(10, 2));
         int[] tableau = {1, 2, 1, 4, 5};
         System.out.println(nbOccAux(1, tableau, tableau.length - 1));
@@ -15,7 +15,10 @@ public class TP1{
         System.out.println("expected : false, result : " + estCroissant(tabl));
         System.out.println("expected : true, result : " + estCroissant(tbl2));
         System.out.println("expected : true, result : " + estCroissant(tbl3));
-        System.out.println(f(10));
+        System.out.println(f(10));*/
+
+        //resoudre(3);
+        System.out.println(PGCD(1755,1053));
     }
 
     public static int factorielle(int n) {
@@ -84,8 +87,8 @@ public class TP1{
     }
 
     private static boolean estCroissantAux(int[] t, int i) {
-        if (i == t.length-1) {
-            return t[i-1]<t[i];
+        if (i == t.length - 1) {
+            return t[i - 1] < t[i];
         } else {
             return t[i] < t[i + 1] && estCroissantAux(t, i + 1);
         }
@@ -93,21 +96,40 @@ public class TP1{
 
     //8.2 Fibonacci sur les dominos
 
-    public static int f(int i){
+    public static int f(int i) {
         //pré-requis : i>=1
-        if(i<2){
+        if (i < 2) {
             return i;
-        }
-        else {
-            return f(i-1)+f(i-2);
+        } else {
+            return f(i - 1) + f(i - 2);
         }
     }
 
-    public static void resoudre(int n){
-
+    public static void resoudre(int n) {
+        resoudreAux(n, 1, 2, 3);
     }
-    private static void resoudre(int n,int i,int k,int j){
 
+    private static void resoudreAux(int n, int a, int b, int c) {
+        if (n == 1) {
+            System.out.println(a + "->" + c);
+        } else {
+            resoudreAux(n - 1, a, c, b);
+            System.out.println(a + "->" + c);
+            resoudreAux(n - 1, b, a, c);
+        }
+    }
+
+        /*faut bien réfléchir au fait qu'un problème de
+        taille n = (problème de taille n-1) + 1 où 1 est la gestion d'un seul élément, ici un seul disque
+         */
+
+    public static int PGCD(int a, int b) {
+        int r = a % b;
+        if (r == 0) {
+            return b;
+        } else {
+            return PGCD(b, r);
+        }
     }
 
 
