@@ -1,4 +1,4 @@
-public class TP1 {
+public class TP1{
 
     public static void main(String[] args) {
         System.out.println(sommesImpairs(5));
@@ -85,7 +85,7 @@ public class TP1 {
 
     private static boolean estCroissantAux(int[] t, int i) {
         if (i == t.length-1) {
-            return t[i - 1] < t[i];
+            return t[i-1]<t[i];
         } else {
             return t[i] < t[i + 1] && estCroissantAux(t, i + 1);
         }
@@ -101,6 +101,13 @@ public class TP1 {
         else {
             return f(i-1)+f(i-2);
         }
+    }
+
+    public static void resoudre(int n){
+
+    }
+    private static void resoudre(int n,int i,int k,int j){
+
     }
 
 
