@@ -1,3 +1,5 @@
+package ressources.tp2;
+
 class DessinFractale{
     private final Turtle bob;
     

@@ -14,8 +14,4 @@ public class DivideAndConquer {
         }
     }
 
-    //Exercice 2 QuickSort
-
-    //Exercice 3 : Fractale
-
 }
