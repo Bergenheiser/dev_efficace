@@ -1,5 +1,3 @@
-package ressources.tp2;
-
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;

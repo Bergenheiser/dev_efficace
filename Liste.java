@@ -62,8 +62,36 @@ class Liste{
     //////////////////////////////////////////////
     //////// méthodes du TD
     //////////////////////////////////////////////
-    
-    
+
+	public int longueur(){
+		return this.estVide()? 0:1+this.suiv.longueur();
+	}
+
+	public int somme(){
+		return this.estVide()? 0:this.val+this.suiv.somme();
+	}
+
+	public boolean croissant(){
+		if (this.estVide()){
+			return true;
+		}
+		else{
+			return this.val<this.suiv.val && this.suiv.croissant();
+		}
+	}
+
+	public int get(int i){
+		if(i==0){
+			return this.val;
+		}
+		else {
+			return this.suiv.get(i-1);
+		}
+	}
+
+	public void ajoutFin(int x){
+
+	}
 
     public static void main(String[] arg){
 	Liste l = new Liste();
@@ -75,8 +103,14 @@ class Liste{
 	l.ajoutTete(1);
 	l.ajoutTete(1);
 	l.ajoutTete(2);
+	//Exercice 1
+	System.out.println(l.longueur());
+	System.out.println(l.somme());
 	System.out.println(l);
+	System.out.println(l.get(4));
+	//Exercice 2
 
 
     }
+
 }

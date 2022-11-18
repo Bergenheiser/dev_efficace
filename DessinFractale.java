@@ -1,5 +1,3 @@
-package ressources.tp2;
-
 class DessinFractale{
     private final Turtle bob;
     
@@ -42,13 +40,47 @@ class DessinFractale{
 	 bob.up();
     }
 
+	public void vonKoch(double l,int n){
+		bob.down();
+		if(n==0){
+			bob.forward(l);
+		}
+		else{
+			vonKoch(l/3,n-1);
+			bob.left(60);
+			vonKoch(l/3,n-1);
+			bob.right(120);
+			vonKoch(l/3, n-1);
+			bob.left(60);
+			vonKoch(l/3,n-1);
+		}
+		bob.up();
+	}
+
+	public void arbre(double l, int n){
+		bob.down();
+		if (n==0){
+			bob.forward(l);
+		}
+		else{
+			bob.forward(0.66*l);
+			bob.left(45);
+			arbre(l/3,n-1);
+			bob.backward(l/3);
+			bob.right(90);
+			arbre(l/3,n-1);
+			bob.backward(l/3);
+			bob.left(45);
+			arbre(l/3,n-1);
+		}
+		bob.up();
+	}
+
+
 
     public static void main(String[] args){
 	DessinFractale d = new DessinFractale(500);
-	d.carre(90);
-	d.reset();
-	d.carre(60);
-	d.reset();
+	d.arbre(100,2);
 	d.close();
     }
     
