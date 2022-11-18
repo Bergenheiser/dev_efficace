@@ -14,6 +14,13 @@ class Liste {
         suiv = null;
     }
 
+    public Liste(int... elements) {
+        this();
+        for (int i = 0; i < elements.length; i++) {
+            this.ajoutTete(elements[elements.length - 1 - i]);
+        }
+    }
+
     public Liste(Liste l) {
         if (l.estVide()) {
             suiv = null;
@@ -91,45 +98,56 @@ class Liste {
             this.suiv.ajoutFin(x);
         }
     }
-    public void concat(Liste l){
-        if(suiv.estVide()){
-            this.suiv=l;
-        }
-        else{
+
+    public void concat(Liste l) {
+        if (suiv.estVide()) {
+            this.suiv = l;
+        } else {
             this.suiv.concat(l);
         }
     }
 
-    public static void main(String[] arg) {
-        Liste l = new Liste();
-        l.ajoutTete(4);
-        l.ajoutTete(3);
-        l.ajoutTete(4);
-        l.ajoutTete(2);
-        l.ajoutTete(1);
-        l.ajoutTete(1);
-        l.ajoutTete(1);
-        l.ajoutTete(2);
-        //Exercice 1
-        System.out.println(l.longueur());
-        System.out.println(l.somme());
-        System.out.println(l);
-        System.out.println(l.get(4));
-        //Exercice 2
-        Liste l2 = new Liste();
-        System.out.println(l);
-        l2.ajoutTete(4);
-        l2.ajoutTete(3);
-        l2.ajoutTete(4);
-        l2.ajoutTete(2);
-        l2.ajoutTete(1);
-        l2.ajoutTete(1);
-        l2.ajoutTete(1);
-        l2.ajoutTete(2);
-        l2.ajoutFin(10);
-        l.concat(l2);
-        System.out.println(l);
+    //Exercice 3
+    public Liste supprOccs(int x) {
+        if (this.estVide()) {
+            return new Liste();
+        } else if (this.val == x) {
+            return new Liste(this.suiv.supprOccs(x));
+        } else {
+            return new Liste(this.val, this.suiv.supprOccs(x));
+        }
+    }
 
+    public Liste supprOccsV2(int x){
+        if(this.estVide()){
+            return this;
+        }
+        else if(this.val==x){
+            supprimeTete();
+            return this.supprOccsV2(x);
+        }
+        else {
+            return this.suiv.supprOccsV2(x);
+        }
+    }
+
+    public static void main(String[] arg) {
+        Liste l = new Liste(4, 3, 4, 2, 1, 1, 1, 2);
+        //Exercice 1
+        System.out.println("l: "+l);
+        System.out.println("longueur l: "+l.longueur());
+        System.out.println("somme l: "+l.somme());
+        System.out.println("l.get(4): "+l.get(4));
+        //Exercice 2
+        Liste l2 = new Liste(1, 2, 1, 1, 1, 1, 1, 4, 5, 6, 6, 7, 7, 7, 9);
+        //Exercice 3
+        System.out.println("l2: "+l2);
+        Liste l4 = new Liste(l2);
+        Liste l3 = l2.supprOccs(1);
+        System.out.println("l3 = l2.SupprOccs(1): "+l3);
+        //Exercice 4
+        l4.supprOccsV2(1);
+        System.out.println("l4 = l2.SupprOccsV2(1): "+this);
 
 
     }
