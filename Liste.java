@@ -137,7 +137,7 @@ class Liste {
         }
         Liste tete = this.suiv.retourne();
         this.suiv.suiv=this;
-        this.suiv=null;
+        this.suiv=new Liste();
         return tete;
 
     }
