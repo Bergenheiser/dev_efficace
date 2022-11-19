@@ -139,7 +139,6 @@ class Liste {
         this.suiv.suiv=this;
         this.suiv=new Liste();
         return tete;
-
     }
 
     public static void main(String[] arg) {
@@ -161,7 +160,8 @@ class Liste {
         System.out.println("l4 = l2.SupprOccsV2(1): "+l4);
         Liste l5 = new Liste(1,2,3,4,5,6,7,8,9);
         System.out.println("l5: "+l5);
-        System.out.println("l5.retourne(): "+l5.retourne());
+        l5= l5.retourne();
+        System.out.println("l5.retourne(): "+l5);
 
 
     }
