@@ -131,6 +131,17 @@ class Liste {
         }
     }
 
+    public Liste retourne(){
+        if(this.estVide() || this.suiv.estVide()){
+            return this;
+        }
+        Liste tete = this.suiv.retourne();
+        this.suiv.suiv=this;
+        this.suiv=null;
+        return tete;
+
+    }
+
     public static void main(String[] arg) {
         Liste l = new Liste(4, 3, 4, 2, 1, 1, 1, 2);
         //Exercice 1
@@ -147,7 +158,10 @@ class Liste {
         System.out.println("l3 = l2.SupprOccs(1): "+l3);
         //Exercice 4
         l4.supprOccsV2(1);
-        System.out.println("l4 = l2.SupprOccsV2(1): "+this);
+        System.out.println("l4 = l2.SupprOccsV2(1): "+l4);
+        Liste l5 = new Liste(1,2,3,4,5,6,7,8,9);
+        System.out.println("l5: "+l5);
+        System.out.println("l5.retourne(): "+l5.retourne());
 
 
     }
