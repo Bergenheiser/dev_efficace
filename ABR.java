@@ -109,7 +109,7 @@ public class ABR {
 
     public ABR(Liste l) {
         new ABR();
-        while(!l.estVide()){
+        while (!l.estVide()) {
             this.insert(l.get(0));
             l.supprimeTete();
         }
@@ -124,7 +124,29 @@ public class ABR {
 
     public void suppr(int x) {
         //supprime x de this, et ne fait rien si x n'est pas présent
-        throw new RuntimeException("méthode non implémentée");
+        if (recherche(x)) {
+            if (val == x) {
+                if (!estVide()) {
+                    val = filsG.getVal();
+                    if (!filsG.estVide()) {
+                        filsG = filsG.getFilsG();
+                    }
+                    else if (!filsD.estVide()) {
+                        filsD = filsD.getFilsD();
+                    }
+                    else new ABR(val,new ABR(),new ABR())
+                } else {
+                    new ABR(x,new ABR(),new ABR());
+                }
+
+            } else {
+                if (x <= filsD.getVal() && !estVide()) {
+                    filsG.suppr(x);
+                } else {
+                    filsD.suppr(x);
+                }
+            }
+        }
     }
 
     public boolean verifie() {
