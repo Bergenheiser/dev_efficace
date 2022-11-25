@@ -1,8 +1,3 @@
-
-
-import java.util.*;
-
-
 public class Test {
     public static void printTest(String msg, boolean b){
         System.out.println("test : "+(b?" ok":" KO") + " (" + msg + ")");
@@ -78,17 +73,27 @@ public class Test {
         printTest("testVerifie2", !a.verifie());
     }
 
+    public static void testListeTriee(){
+        ABR a = construitArbre1();
+        Liste testTrie = a.toListeTriee();
+        System.out.println(testTrie);
+    }
+
     public static void main(String[] args){
         ABR a0 = construitArbre0();
         System.out.println(a0);
         ABR a = construitArbre1();
         System.out.println(a);
         testRecherche();
+        testListeTriee();
         testSuppr1();
         testSuppr2();
         testSuppr3();
         testVerifie1();
         testVerifie2();
+        Liste testTrie = a.toListeTriee();
+        System.out.println(testTrie);
+
 
     }
 

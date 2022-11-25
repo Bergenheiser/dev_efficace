@@ -1,4 +1,4 @@
-class Liste {
+public class Liste {
     private int val;
     private Liste suiv;
 
@@ -100,8 +100,9 @@ class Liste {
     }
 
     public void concat(Liste l) {
-        if (suiv.estVide()) {
-            this.suiv = l;
+        if (this.estVide()) {
+            this.val=l.val;
+            this.suiv = new Liste(l.suiv);
         } else {
             this.suiv.concat(l);
         }
