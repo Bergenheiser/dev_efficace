@@ -107,6 +107,7 @@ class Liste {
         }
     }
 
+
     //Exercice 3
     public Liste supprOccs(int x) {
         if (this.estVide()) {
