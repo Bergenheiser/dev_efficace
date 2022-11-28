@@ -107,6 +107,21 @@ public class ABR {
         }
     }
 
+    public void toListeTrieeV2aux(Liste l) {
+        if (!estVide()) {
+            filsD.toListeTrieeV2aux(l);
+            l.ajoutTete(val);
+            filsG.toListeTrieeV2aux(l);
+        }
+    }
+
+    public Liste toListeTrieeV2() {
+        //version cliente qui est donc O(n)
+        Liste res = new Liste();
+        toListeTrieeV2aux(res);
+        return res;
+    }
+
     public ABR(Liste l) {
         new ABR();
         while (!l.estVide()) {
@@ -118,34 +133,43 @@ public class ABR {
 
     public int max() {
         //retourne l'entier max de this (et -infini si vide)
-        throw new RuntimeException("méthode non implémentée");
+        if (estVide()) {
+            return Integer.MIN_VALUE;
+
+        }
+        if (!filsD.estVide()) {
+            filsD.max();
+        }
+        setFilsD(null);
+        setFilsG(null);
+        return val;
     }
 
 
     public void suppr(int x) {
         //supprime x de this, et ne fait rien si x n'est pas présent
-        if (recherche(x)) {
-            if (val == x) {
-                if (!estVide()) {
-                    val = filsG.getVal();
-                    if (!filsG.estVide()) {
-                        filsG = filsG.getFilsG();
-                    }
-                    else if (!filsD.estVide()) {
-                        filsD = filsD.getFilsD();
-                    }
-                    else new ABR(val,new ABR(),new ABR())
-                } else {
-                    new ABR(x,new ABR(),new ABR());
-                }
-
+        if (!estVide()) {
+            if (x < val) {
+                filsG.suppr(x);
+            } else if (x > val) {
+                filsD.suppr(x);
             } else {
-                if (x <= filsD.getVal() && !estVide()) {
-                    filsG.suppr(x);
+                if (filsD.estVide()) {
+                    val = filsG.getVal();
+                    filsD = filsG.getFilsD();
+                    filsG = filsG.getFilsG();
+                }
+                if (filsG.estVide()) {
+                    val = filsD.getVal();
+                    filsG = filsD.getFilsG();
+                    filsD = filsD.getFilsD();
                 } else {
-                    filsD.suppr(x);
+                    int m = filsG.max();
+                    val = m;
+                    filsG.suppr(m);
                 }
             }
+
         }
     }
 
