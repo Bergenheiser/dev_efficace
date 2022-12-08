@@ -131,21 +131,6 @@ public class ABR {
     }
 
 
-    public int max() {
-        //retourne l'entier max de this (et -infini si vide)
-        if (estVide()) {
-            return Integer.MIN_VALUE;
-
-        }
-        if (!filsD.estVide()) {
-            filsD.max();
-        }
-        setFilsD(null);
-        setFilsG(null);
-        return val;
-    }
-
-
     public void suppr(int x) {
         //supprime x de this, et ne fait rien si x n'est pas présent
         if (!estVide()) {
@@ -158,13 +143,12 @@ public class ABR {
                     val = filsG.getVal();
                     filsD = filsG.getFilsD();
                     filsG = filsG.getFilsG();
-                }
-                if (filsG.estVide()) {
+                } else if (filsG.estVide()) {
                     val = filsD.getVal();
                     filsG = filsD.getFilsG();
                     filsD = filsD.getFilsD();
                 } else {
-                    int m = filsG.max();
+                    int m = filsG.maxABR();
                     val = m;
                     filsG.suppr(m);
                 }
@@ -173,14 +157,66 @@ public class ABR {
         }
     }
 
+    public int max() {
+        //retourne l'entier max de this (et -infini si vide)
+        if (this.estVide()) {
+            return Integer.MIN_VALUE;
+        } else if (this.filsD.estVide()) {
+            return this.val;
+        } else {
+            return this.filsD.max();
+        }
+    }
+
+    public int maxABR() {
+        if (estVide()) {
+            return Integer.MIN_VALUE;
+        } else {
+            return Math.max(val, filsD.maxABR());
+        }
+    }
+
+    public int maxArbre() {
+        if (this.estVide()) {
+            return Integer.MIN_VALUE;
+        } else {
+            return Math.max(Math.max(val, filsD.maxArbre()), filsG.maxArbre());
+        }
+    }
+
+    public int minArbre() {
+        if (this.estVide()) {
+            return Integer.MAX_VALUE;
+        } else {
+            return Math.min(Math.min(val, filsD.minArbre()), filsG.minArbre());
+        }
+    }
+
     public boolean verifie() {
-        //prérequis : this est bien un arbre (au sens de la classe Arbre : soit les deux fils null, soit les deux fils non null)
-        throw new RuntimeException("méthode non implémentée");
+        if (estVide() || (this.filsD.estVide() && this.filsG.estVide())) {
+            return true;
+        }
+        if (val > filsD.minArbre()) {
+            return false;
+        }
+        if (val < filsG.maxArbre()) {
+            return false;
+        }
+        return filsG.verifie() && filsD.verifie();
     }
 
     public boolean verifABR(int m, int M) {
-        //prérequis : this est bien un arbre (au sens de la classe Arbre : soit les deux fils null, soit les deux fils non null)
-        throw new RuntimeException("méthode non implémentée");
+        if (estVide()) {
+            return true;
+        }
+        if ((val < m)||(M<val)){
+            return false;
+        }
+        return filsG.verifABR(m,val) && filsD.verifABR(val,M);
+    }
+
+    public boolean verifABRMain(){
+        return verifABR(Integer.MIN_VALUE,Integer.MAX_VALUE);
     }
 
     public int[] verifABRV2() {

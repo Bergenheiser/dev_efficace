@@ -6,10 +6,10 @@ public class DivideAndConquer {
 
     static int puissanceRapide(int x, int n) {
         if (n % 2 == 0) {
-            int res = Recursive.puiss(x, n / 2);
+            int res = Intro2Recursive.puiss(x, n / 2);
             return res * res;
         } else {
-            int res = Recursive.puiss(x, (n - 1) / 2);
+            int res = Intro2Recursive.puiss(x, (n - 1) / 2);
             return res * res * x;
         }
     }
