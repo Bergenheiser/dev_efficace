@@ -168,12 +168,12 @@ public class Heap<T extends Comparable<T>> {
     public ArrayList<T> toSortedArray() {
         //action : retourne un tableau trié (au sens où l'ArrayList retournée res vérifie res.get(i).isSup(res.get(i+1)).
         // Cette méthode peut modifier this.
-
         ArrayList<T> res = new ArrayList<>();
         while (size() > 0) {
             res.add(removeTop());
         }
         return res;
+
     }
     //////////////////////////////////////////////
     ///// méthodes utiles seulement pour les tests (vous ne devez pas les utiliser)

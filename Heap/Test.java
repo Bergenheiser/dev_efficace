@@ -23,13 +23,7 @@ public class Test {
 
     }
 
-    public static <T extends Comparable<T>>  ArrayList<T> heapSort(ArrayList<T> t){
-        //implémente le tri par tas par ordre croissant
-        ArrayList<Integer> t = new ArrayList<>(Arrays.asList(5, 30, 40, 19, 10, 2, 25));
-        Heap<Integer> tas = new Heap<>(true,t);
-        ArrayList<Integer> t2 = new ArrayList<>(Arrays.asList(2, 5, 10, 19, 25, 30,40));
-        printTest("testSortedArray",tas.toSortedArray().equals(t2));
-    }
+
     public static void compareTri(int n){
         Random r = new Random();
         ArrayList<Integer> toSort = new ArrayList<>();
@@ -41,7 +35,6 @@ public class Test {
 
 
         long start = System.currentTimeMillis();
-        toSort=heapSort(toSort);
         long stop = System.currentTimeMillis();
         long delta1 = stop-start;
 
@@ -60,7 +53,7 @@ public class Test {
 
 
     public static void testHeapifyUp() {
-        Heap<Integer> tas = new Heap<>(true);
+        Heap<Integer> tas = new Heap<Integer>(true);
         ArrayList<Integer> t = new ArrayList<>(Arrays.asList(3,1,2,4));
         tas.setT(t);
         tas.heapifyUp(3);
@@ -95,7 +88,7 @@ public class Test {
     }
 
     public static void testAdd() {
-        Heap<Integer> tas = new Heap<>(true);
+        Heap<Integer> tas = new Heap<Integer>(true);
         tas.add(4);
         tas.add(8);
         tas.add(2);
@@ -141,6 +134,18 @@ public class Test {
 
     }
 
+    public static void testAffichageGraph(){
+        Graph g = new Graph(5);
+        g.addEdge(0,1,1);
+        g.addEdge(0,2,10);
+        g.addEdge(1,2,2);
+        g.addEdge(1,3,30);
+        g.addEdge(2,3,3);
+        g.addEdge(0,4,2);
+        g.addEdge(4,3,2);
+        System.out.println(g);
+
+    }
 
     public static void testDijWithoutPQ(){
         Graph g = new Graph(5);
@@ -151,8 +156,8 @@ public class Test {
         g.addEdge(2,3,3);
         g.addEdge(0,4,2);
         g.addEdge(4,3,2);
-
         ArrayList<Integer> path = new ArrayList<>(Arrays.asList(0,4,3));
+        g.toSVGWithPath(0,3,path).saveAsFile("./res");
         printTest("testDijWithoutHeap1",g.dijkstraWithoutPriorityQ(0,3).equals(path));
 
         g = new Graph(5);
@@ -200,10 +205,12 @@ public class Test {
 
     public static void main(String[] args){
 
-       testHeapifyUp();
-       testAdd();
-       testRemove();
-       testRemoveTop();
+       //testHeapifyUp();
+      // testAdd();
+      // testRemove();
+      // testRemoveTop();
+      // testPQeueueAddgGetRemoveTop();
+        // testAffichageGraph();
        testDijWithoutPQ();
        testDijWithPQ();
        compareTri(10);

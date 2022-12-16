@@ -1,4 +1,4 @@
-package svg;
+package SVG;
 
 public class Group extends Tag2 {
     

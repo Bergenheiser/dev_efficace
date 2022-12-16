@@ -1,4 +1,4 @@
-package svg;
+package SVG;
 import java.util.Locale;
 
 public class Circle extends Tag2 {

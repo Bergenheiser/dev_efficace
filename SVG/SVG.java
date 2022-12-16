@@ -1,4 +1,4 @@
-package svg;
+package SVG;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -13,7 +13,7 @@ public class SVG extends Tag {
 
     public SVG(double width, double height) {
 
-        super("svg");
+        super("SVG");
         this.width = width;
         this.height = height;
         this.content = new LinkedList<>();

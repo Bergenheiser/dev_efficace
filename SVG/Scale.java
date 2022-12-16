@@ -1,4 +1,4 @@
-package svg;
+package SVG;
 public class Scale extends Transform {
 	
 	public Scale(double x, double y) {

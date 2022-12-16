@@ -1,4 +1,4 @@
-package svg;
+package SVG;
 import java.util.StringJoiner;
 
 public abstract class Tag { //Modélisation d'une balise SVG

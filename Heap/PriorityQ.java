@@ -9,24 +9,31 @@ public class PriorityQ<T> {
         h = new Heap<ElemWithPriority<T>>(isMaxPQ);
     }
 
-    public int size(){
+    public int size() {
         return h.size();
     }
 
     public void add(T e, double p) {
         //ajoute e avec la priorité p dans le tas h
-        throw new RuntimeException("méthode non implémentée");
+        ElemWithPriority<T> element = new ElemWithPriority<T>(e, p);
+        h.add(element);
     }
 
     public T getTop() {
         //retourne un élément de priorité max (si l'on est une max priority queue) ou min sinon
-        throw new RuntimeException("méthode non implémentée");
+        return h.getTop().getElem();
+
     }
 
     public T removeTop() {
         //retourne et retire un élément de priorité max (si l'on est une max priority queue) ou min sinon
-        throw new RuntimeException("méthode non implémentée");
+        T res = h.getTop().getElem();
+        h.remove(0);
+        return res;
     }
 
 
 }
+
+
+

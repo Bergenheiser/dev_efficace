@@ -1,4 +1,4 @@
-package svg;
+package SVG;
 
 public class Translate extends Transform{
 
